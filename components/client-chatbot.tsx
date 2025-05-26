@@ -49,8 +49,8 @@ export default function ClientChatbot({ clientName, orderNumber, onLogout }: Cli
   const orderDetails = {
     id: orderNumber,
     status: "En transit",
-    orderDate: "2024-01-12",
-    estimatedDelivery: "2024-01-25",
+    orderDate: "2025-01-12",
+    estimatedDelivery: "2025-01-25",
     trackingNumber: "TRK123456789",
     carrier: "DHL Express",
     total: "2,450€",
@@ -82,15 +82,15 @@ export default function ClientChatbot({ clientName, orderNumber, onLogout }: Cli
       street: "123 Rue de la République",
       city: "75001 Paris",
       country: "France",
-      phone: "+33 1 23 45 67 89",
+      phone: "+212 36 34 32 25",
     },
     timeline: [
-      { status: "Commande confirmée", date: "2024-01-12", time: "14:30", completed: true },
-      { status: "En préparation", date: "2024-01-13", time: "09:15", completed: true },
-      { status: "Expédiée", date: "2024-01-15", time: "16:45", completed: true },
-      { status: "En transit", date: "2024-01-18", time: "08:20", completed: true },
-      { status: "En livraison", date: "2024-01-25", time: "10:00", completed: false },
-      { status: "Livrée", date: "2024-01-25", time: "18:00", completed: false },
+      { status: "Commande confirmée", date: "2025-01-12", time: "14:30", completed: true },
+      { status: "En préparation", date: "2025-01-13", time: "09:15", completed: true },
+      { status: "Expédiée", date: "2025-01-15", time: "16:45", completed: true },
+      { status: "En transit", date: "2025-01-18", time: "08:20", completed: true },
+      { status: "En livraison", date: "2025-01-25", time: "10:00", completed: false },
+      { status: "Livrée", date: "2025-01-25", time: "18:00", completed: false },
     ],
   }
 
@@ -100,7 +100,7 @@ export default function ClientChatbot({ clientName, orderNumber, onLogout }: Cli
 
     switch (action) {
       case "track_order":
-        botResponse = `📦 **Suivi de votre commande ${orderNumber}**\n\n🚚 Statut actuel : **${orderDetails.status}**\n📅 Livraison prévue : **${orderDetails.estimatedDelivery}**\n📋 Numéro de suivi : **${orderDetails.trackingNumber}**\n🚛 Transporteur : **${orderDetails.carrier}**\n\nVoulez-vous voir le suivi détaillé ?`
+        botResponse = `📦 **Suivi de votre commande ${orderNumber}**\n\n🚚 Statut actuel : **${orderDetails.status}**\n📅 Livraison prévue : **${orderDetails.estimatedDelivery}**\n🚛 Transporteur : **${orderDetails.carrier}**\n\nVoulez-vous voir le suivi détaillé ?`
         newView = "tracking_details"
         break
 
@@ -110,12 +110,12 @@ export default function ClientChatbot({ clientName, orderNumber, onLogout }: Cli
         break
 
       case "feedback":
-        botResponse = `⭐ **Votre avis nous intéresse !**\n\nVotre satisfaction est notre priorité. Partagez votre expérience pour nous aider à nous améliorer.\n\nVous pouvez évaluer :\n• La qualité du produit\n• Le service de livraison\n• Notre service client\n• Le site web`
+        botResponse = `⭐ **Votre avis nous intéresse !**\n\nVotre satisfaction est notre priorité. Partagez votre expérience pour nous aider à nous améliorer.\n\nVous pouvez évaluer :\n• La qualité du produit\n• Le service de livraison\n• Notre service client\n`
         newView = "feedback_form"
         break
 
       case "support":
-        botResponse = `🆘 **Support Client**\n\nNotre équipe est là pour vous aider !\n\n📞 **Téléphone** : +33 1 23 45 67 89\n📧 **Email** : support@stockassist.com\n💬 **Chat** : Disponible 24h/7j\n\n🕒 **Horaires** :\n• Lun-Ven : 9h00-18h00\n• Samedi : 9h00-12h00`
+        botResponse = `🆘 **Support Client**\n\nNotre équipe est là pour vous aider !\n\n📞 **Téléphone** : +212 36 34 32 25\n📧 **Email** : support@assist.com\n💬 **Chat** : Disponible 24h/7j\n\n🕒 **Horaires** :\n• Lun-Ven : 9h00-18h00\n• Samedi : 9h00-12h00`
         newView = "support_options"
         break
 
@@ -414,7 +414,7 @@ export default function ClientChatbot({ clientName, orderNumber, onLogout }: Cli
                           </div>
                         </div>
 
-                        {/* Tracking Info */}
+                        {/* Tracking Info
                         <div className="space-y-4">
                           <Card>
                             <CardHeader>
@@ -435,13 +435,10 @@ export default function ClientChatbot({ clientName, orderNumber, onLogout }: Cli
                                 <p className="text-xs text-gray-600">Livraison estimée</p>
                                 <p className="text-sm font-medium">{orderDetails.estimatedDelivery}</p>
                               </div>
-                              <Button className="w-full mt-4" variant="outline">
-                                <Eye className="h-4 w-4 mr-2" />
-                                Suivre sur DHL
-                              </Button>
+
                             </CardContent>
                           </Card>
-                        </div>
+                        </div>*/}
                       </div>
                     </div>
                   )}
@@ -458,24 +455,20 @@ export default function ClientChatbot({ clientName, orderNumber, onLogout }: Cli
                       <div className="space-y-4">
                         {orderDetails.items.map((item) => (
                           <div key={item.id} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
-                            <img
-                              src={item.image || "/placeholder.svg"}
-                              alt={item.name}
-                              className="w-16 h-16 object-cover rounded-md border"
-                            />
+
                             <div className="flex-1">
                               <h4 className="font-medium text-gray-900">{item.name}</h4>
                               <p className="text-sm text-gray-600">Quantité: {item.quantity}</p>
                             </div>
                             <div className="text-right">
-                              <p className="font-medium">{item.price}</p>
+
                             </div>
                           </div>
                         ))}
                         <Separator />
                         <div className="flex justify-between items-center text-lg font-semibold">
-                          <span>Total</span>
-                          <span className="text-green-600">{orderDetails.total}</span>
+
+
                         </div>
                       </div>
                     </div>
@@ -561,7 +554,7 @@ export default function ClientChatbot({ clientName, orderNumber, onLogout }: Cli
                           <div className="text-center">
                             <Phone className="h-8 w-8 text-blue-600 mx-auto mb-3" />
                             <h4 className="font-semibold mb-2">Téléphone</h4>
-                            <p className="text-sm text-gray-600 mb-3">+33 1 23 45 67 89</p>
+                            <p className="text-sm text-gray-600 mb-3">+212 36 34 32 25</p>
                             <p className="text-xs text-gray-500">Lun-Ven: 9h-18h</p>
                           </div>
                         </Card>
@@ -570,7 +563,7 @@ export default function ClientChatbot({ clientName, orderNumber, onLogout }: Cli
                           <div className="text-center">
                             <Mail className="h-8 w-8 text-green-600 mx-auto mb-3" />
                             <h4 className="font-semibold mb-2">Email</h4>
-                            <p className="text-sm text-gray-600 mb-3">support@stockassist.com</p>
+                            <p className="text-sm text-gray-600 mb-3">support@assist.com</p>
                             <p className="text-xs text-gray-500">Réponse sous 24h</p>
                           </div>
                         </Card>
@@ -750,7 +743,7 @@ export default function ClientChatbot({ clientName, orderNumber, onLogout }: Cli
             </div>
           </div>
 
-          {/* Quick Actions Footer */}
+          {/* Quick Actions Footer
           <div className="border-t border-gray-200 bg-white p-4">
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center justify-between">
@@ -777,7 +770,7 @@ export default function ClientChatbot({ clientName, orderNumber, onLogout }: Cli
                 </div>
               </div>
             </div>
-          </div>
+          </div>*/}
         </div>
       </div>
     </div>

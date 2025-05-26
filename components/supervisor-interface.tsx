@@ -69,7 +69,7 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
       minStock: 20,
       maxStock: 100,
       status: "En stock",
-      price: "1,299€",
+
       supplier: "Dell France",
       lastUpdate: "2024-01-15",
     },
@@ -81,7 +81,7 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
       minStock: 15,
       maxStock: 50,
       status: "Stock faible",
-      price: "299€",
+
       supplier: "Office Depot",
       lastUpdate: "2024-01-14",
     },
@@ -93,19 +93,19 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
       minStock: 10,
       maxStock: 30,
       status: "Stock critique",
-      price: "399€",
+
       supplier: "HP France",
       lastUpdate: "2024-01-13",
     },
     {
       id: 4,
-      name: "Papier A4 Premium",
+      name: "Carte Graphique GTX",
       category: "Fournitures",
-      stock: 150,
+      stock: 20,
       minStock: 50,
-      maxStock: 200,
+      maxStock: 100,
       status: "En stock",
-      price: "8€",
+
       supplier: "Papeterie Plus",
       lastUpdate: "2024-01-15",
     },
@@ -117,7 +117,6 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
       minStock: 15,
       maxStock: 60,
       status: "En stock",
-      price: "249€",
       supplier: "Samsung France",
       lastUpdate: "2024-01-14",
     },
@@ -126,25 +125,25 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
   const ordersData = [
     {
       id: "CMD001",
-      client: "Entreprise ABC",
+      client: "Asma Ait Nasser",
       date: "2024-01-15",
       status: "Livré",
-      total: "2,450€",
+
       items: 5,
       priority: "Normal",
     },
     {
       id: "CMD002",
-      client: "Société XYZ",
+      client: "Maha Rhaouate",
       date: "2024-01-14",
       status: "En transit",
-      total: "1,200€",
+
       items: 3,
       priority: "Urgent",
     },
     {
       id: "CMD003",
-      client: "Bureau DEF",
+      client: "Omayma Yousfi",
       date: "2024-01-13",
       status: "En préparation",
       total: "890€",
@@ -153,10 +152,10 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
     },
     {
       id: "CMD004",
-      client: "Magasin GHI",
+      client: "Meryem Aboutaleb",
       date: "2024-01-12",
       status: "En attente",
-      total: "3,200€",
+
       items: 8,
       priority: "Élevé",
     },
@@ -301,14 +300,14 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
               <Input placeholder="Rechercher produits, commandes..." className="pl-10 w-80" />
             </div>
 
-            <Button variant="outline" size="icon" className="relative">
+            {/*<Button variant="outline" size="icon" className="relative">
               <Bell className="h-4 w-4" />
               {notifications > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {notifications}
                 </span>
               )}
-            </Button>
+            </Button>*/}
 
             <Button onClick={() => setChatOpen(!chatOpen)} className="bg-blue-600 hover:bg-blue-700">
               <MessageCircle className="h-4 w-4 mr-2" />
@@ -536,14 +535,7 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
           )}
 
           {/* Main Tabs */}
-          <Tabs defaultValue="overview" className="space-y-4">
-            <TabsList className="grid w-full grid-cols-5">
-              <TabsTrigger value="overview">Vue d'ensemble</TabsTrigger>
-              <TabsTrigger value="stock">Gestion Stock</TabsTrigger>
-              <TabsTrigger value="orders">Commandes</TabsTrigger>
-              <TabsTrigger value="analytics">Analyses</TabsTrigger>
-              <TabsTrigger value="reports">Rapports</TabsTrigger>
-            </TabsList>
+
 
             <TabsContent value="overview" className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -651,10 +643,10 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
                           <TableHead>Produit</TableHead>
                           <TableHead>Catégorie</TableHead>
                           <TableHead>Stock</TableHead>
-                          <TableHead>Prix</TableHead>
-                          <TableHead>Fournisseur</TableHead>
+
+
                           <TableHead>Statut</TableHead>
-                          <TableHead>Actions</TableHead>
+
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -669,7 +661,7 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
                                 <span className="text-xs text-gray-500">/{item.maxStock}</span>
                               </div>
                             </TableCell>
-                            <TableCell>{item.price}</TableCell>
+
                             <TableCell className="text-sm">{item.supplier}</TableCell>
                             <TableCell>
                               <Badge className={getStatusColor(item.status)}>{item.status}</Badge>
@@ -682,14 +674,6 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
                                   </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end">
-                                  <DropdownMenuItem>
-                                    <Eye className="h-4 w-4 mr-2" />
-                                    Voir détails
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem>
-                                    <Edit className="h-4 w-4 mr-2" />
-                                    Modifier
-                                  </DropdownMenuItem>
                                   <DropdownMenuItem>
                                     <Plus className="h-4 w-4 mr-2" />
                                     Réapprovisionner
@@ -741,7 +725,6 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
                           <TableHead>Date</TableHead>
                           <TableHead>Articles</TableHead>
                           <TableHead>Total</TableHead>
-                          <TableHead>Priorité</TableHead>
                           <TableHead>Statut</TableHead>
                           <TableHead>Actions</TableHead>
                         </TableRow>
@@ -759,29 +742,6 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
                             </TableCell>
                             <TableCell>
                               <Badge className={getStatusColor(order.status)}>{order.status}</Badge>
-                            </TableCell>
-                            <TableCell>
-                              <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                  <Button variant="ghost" size="icon">
-                                    <MoreHorizontal className="h-4 w-4" />
-                                  </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent align="end">
-                                  <DropdownMenuItem>
-                                    <Eye className="h-4 w-4 mr-2" />
-                                    Voir détails
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem>
-                                    <Edit className="h-4 w-4 mr-2" />
-                                    Modifier statut
-                                  </DropdownMenuItem>
-                                  <DropdownMenuItem>
-                                    <Truck className="h-4 w-4 mr-2" />
-                                    Suivre livraison
-                                  </DropdownMenuItem>
-                                </DropdownMenuContent>
-                              </DropdownMenu>
                             </TableCell>
                           </TableRow>
                         ))}
@@ -828,9 +788,9 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
               </div>
             </TabsContent>
 
-            <TabsContent value="reports" className="space-y-4">
+          <TabsContent value="reports" className="space-y-4">
               <Card>
-                <CardHeader>
+                {/*<CardHeader>
                   <CardTitle>Génération de Rapports</CardTitle>
                   <CardDescription>Créez et téléchargez des rapports personnalisés</CardDescription>
                 </CardHeader>
@@ -872,12 +832,12 @@ export default function SupervisorInterface({ supervisorName, supervisorId, onLo
                       </div>
                     </Card>
                   </div>
-                </CardContent>
+                </CardContent>*/}
               </Card>
             </TabsContent>
-          </Tabs>
         </div>
       </div>
     </div>
+
   )
 }

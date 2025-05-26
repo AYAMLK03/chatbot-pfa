@@ -494,14 +494,14 @@ export default function ClientInterface({ clientName, orderNumber, onLogout }: C
                           <Mail className="h-5 w-5 mr-3" />
                           <div className="text-left">
                             <p className="font-medium">Email Support</p>
-                            <p className="text-sm text-gray-600">support@stockassist.com</p>
+                            <p className="text-sm text-gray-600">support@assist.com</p>
                           </div>
                         </Button>
                         <Button className="justify-start h-auto p-4" variant="outline">
                           <Phone className="h-5 w-5 mr-3" />
                           <div className="text-left">
                             <p className="font-medium">Téléphone</p>
-                            <p className="text-sm text-gray-600">+33 1 23 45 67 89</p>
+                            <p className="text-sm text-gray-600">+212 36 34 32 25</p>
                           </div>
                         </Button>
                         <Button className="justify-start h-auto p-4" variant="outline">

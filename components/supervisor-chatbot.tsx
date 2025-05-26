@@ -11,7 +11,7 @@ import {
   BarChart3,
   Download,
   RefreshCw,
-  Eye,
+
   Plus,
   Truck,
   Calendar,
@@ -53,7 +53,6 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
       minStock: 20,
       maxStock: 100,
       status: "En stock",
-      price: "1,299€",
       supplier: "Dell France",
     },
     {
@@ -64,8 +63,7 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
       minStock: 15,
       maxStock: 50,
       status: "Stock faible",
-      price: "299€",
-      supplier: "Office Depot",
+
     },
     {
       id: 3,
@@ -75,49 +73,41 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
       minStock: 10,
       maxStock: 30,
       status: "Stock critique",
-      price: "399€",
-      supplier: "HP France",
+
     },
     {
       id: 4,
-      name: "Papier A4 Premium",
+      name: "Carte Graphique GTX",
       category: "Fournitures",
-      stock: 150,
-      minStock: 50,
-      maxStock: 200,
-      status: "En stock",
-      price: "8€",
-      supplier: "Papeterie Plus",
+      stock: 20,
+      minStock: 70,
+      maxStock: 100,
+      status: "Stock critique",
+
     },
   ]
 
   const ordersData = [
     {
       id: "CMD001",
-      client: "Entreprise ABC",
+      client: "Asma Ait Nasser",
       date: "2024-01-15",
       status: "Livré",
-      total: "2,450€",
       items: 5,
-      priority: "Normal",
     },
     {
       id: "CMD002",
-      client: "Société XYZ",
+      client: "Maha Rhaouate",
       date: "2024-01-14",
       status: "En transit",
-      total: "1,200€",
       items: 3,
-      priority: "Urgent",
     },
     {
       id: "CMD003",
-      client: "Bureau DEF",
+      client: "Omayma Yousfi",
       date: "2024-01-13",
       status: "En préparation",
-      total: "890€",
       items: 2,
-      priority: "Normal",
     },
   ]
 
@@ -137,7 +127,7 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
     {
       id: 3,
       type: "commande_urgente",
-      message: "Nouvelle commande urgente CMD002 - Société XYZ",
+      message: " Carte Graphique GTX- Stock critique(20 unités)",
       severity: "high",
     },
   ]
@@ -163,7 +153,7 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
 
       case "orders":
         const pendingOrders = ordersData.filter((order) => order.status !== "Livré").length
-        botResponse = `📦 **Commandes**\n\nVous avez :\n• ${pendingOrders} commandes en cours\n• ${ordersData.length} commandes au total\n• 1 commande urgente\n\nVoulez-vous voir les détails ?`
+        botResponse = `📦 **Commandes**\n\nVous avez :\n• ${pendingOrders} commandes en cours\n• ${ordersData.length} commandes au total\n\nVoulez-vous voir les détails ?`
         newView = "orders_details"
         break
 
@@ -173,7 +163,7 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
         break
 
       case "restock":
-        botResponse = `🔄 **Réapprovisionnement**\n\nArticles nécessitant un réapprovisionnement :\n• Imprimante HP LaserJet Pro (8/30)\n• Chaise de Bureau (12/50)\n\nVoulez-vous passer des commandes ?`
+        botResponse = `🔄 **Réapprovisionnement**\n\nArticles nécessitant un réapprovisionnement :\n• Imprimante HP LaserJet Pro (8/30)\n• Chaise de Bureau (12/50)\n• Carte Graphique GTX(20/100)\nVoulez-vous passer des commandes ?`
         newView = "restock_options"
         break
 
@@ -231,18 +221,7 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
     }
   }
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case "Urgent":
-        return "bg-red-100 text-red-800"
-      case "Élevé":
-        return "bg-orange-100 text-orange-800"
-      case "Normal":
-        return "bg-blue-100 text-blue-800"
-      default:
-        return "bg-gray-100 text-gray-800"
-    }
-  }
+
 
   const getAlertSeverityColor = (severity: string) => {
     switch (severity) {
@@ -273,14 +252,14 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
           </div>
 
           <div className="flex items-center space-x-4">
-            <Button variant="outline" size="icon" className="relative">
+            {/*<Button variant="outline" size="icon" className="relative">
               <Bell className="h-4 w-4" />
               {notifications > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {notifications}
                 </span>
               )}
-            </Button>
+            </Button>*/}
 
             <div className="flex items-center space-x-2">
               <Avatar className="h-8 w-8">
@@ -353,14 +332,14 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
                             <span className="text-sm font-medium">Commandes</span>
                           </Button>
 
-                          <Button
+                          {/*<Button
                             variant="outline"
                             className="h-auto p-3 flex flex-col items-center space-y-2 hover:bg-purple-50 hover:border-purple-300"
                             onClick={() => handleButtonClick("reports")}
                           >
                             <BarChart3 className="h-5 w-5 text-purple-600" />
                             <span className="text-sm font-medium">Rapports</span>
-                          </Button>
+                          </Button>*/}
 
                           <Button
                             variant="outline"
@@ -371,14 +350,14 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
                             <span className="text-sm font-medium">Réapprovisionner</span>
                           </Button>
 
-                          <Button
+                          {/*<Button
                             variant="outline"
                             className="h-auto p-3 flex flex-col items-center space-y-2 hover:bg-indigo-50 hover:border-indigo-300"
                             onClick={() => handleButtonClick("analytics")}
                           >
                             <TrendingUp className="h-5 w-5 text-indigo-600" />
                             <span className="text-sm font-medium">Analyses</span>
-                          </Button>
+                          </Button>*/}
                         </div>
                       )}
                     </div>
@@ -403,9 +382,9 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
                             <TableRow>
                               <TableHead>Produit</TableHead>
                               <TableHead>Stock</TableHead>
-                              <TableHead>Prix</TableHead>
+
                               <TableHead>Statut</TableHead>
-                              <TableHead>Actions</TableHead>
+
                             </TableRow>
                           </TableHeader>
                           <TableBody>
@@ -419,20 +398,11 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
                                     <span className="text-xs text-gray-500">/{item.maxStock}</span>
                                   </div>
                                 </TableCell>
-                                <TableCell>{item.price}</TableCell>
+
                                 <TableCell>
                                   <Badge className={getStatusColor(item.status)}>{item.status}</Badge>
                                 </TableCell>
-                                <TableCell>
-                                  <div className="flex space-x-1">
-                                    <Button size="sm" variant="outline">
-                                      <Eye className="h-3 w-3" />
-                                    </Button>
-                                    <Button size="sm" variant="outline">
-                                      <Plus className="h-3 w-3" />
-                                    </Button>
-                                  </div>
-                                </TableCell>
+
                               </TableRow>
                             ))}
                           </TableBody>
@@ -479,10 +449,10 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
                             <TableRow>
                               <TableHead>N° Commande</TableHead>
                               <TableHead>Client</TableHead>
-                              <TableHead>Total</TableHead>
-                              <TableHead>Priorité</TableHead>
+
+
                               <TableHead>Statut</TableHead>
-                              <TableHead>Actions</TableHead>
+
                             </TableRow>
                           </TableHeader>
                           <TableBody>
@@ -490,23 +460,10 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
                               <TableRow key={order.id}>
                                 <TableCell className="font-medium">{order.id}</TableCell>
                                 <TableCell>{order.client}</TableCell>
-                                <TableCell className="font-medium">{order.total}</TableCell>
-                                <TableCell>
-                                  <Badge className={getPriorityColor(order.priority)}>{order.priority}</Badge>
-                                </TableCell>
                                 <TableCell>
                                   <Badge className={getStatusColor(order.status)}>{order.status}</Badge>
                                 </TableCell>
-                                <TableCell>
-                                  <div className="flex space-x-1">
-                                    <Button size="sm" variant="outline">
-                                      <Eye className="h-3 w-3" />
-                                    </Button>
-                                    <Button size="sm" variant="outline">
-                                      <Truck className="h-3 w-3" />
-                                    </Button>
-                                  </div>
-                                </TableCell>
+
                               </TableRow>
                             ))}
                           </TableBody>
@@ -665,7 +622,7 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
             </div>
           </div>
 
-          {/* Quick Actions Footer */}
+          {/* Quick Actions Footer
           <div className="border-t border-gray-200 bg-white p-4">
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center justify-between">
@@ -692,7 +649,7 @@ export default function SupervisorChatbot({ supervisorName, supervisorId, onLogo
                 </div>
               </div>
             </div>
-          </div>
+          </div>*/}
         </div>
       </div>
     </div>
